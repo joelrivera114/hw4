@@ -1,20 +1,23 @@
 #include "IntArray.h"
 #include <cassert>
 
-IntArray::IntArray():size(5)
+IntArray::IntArray():size(5), p(new int[5]{})
 {}
-IntArray::IntArray(int s):size(s), p(new int[size]{} ) 
+IntArray::IntArray(int s):size(s), p(new int[s]{} ) 
 {}
 IntArray::~IntArray()
 {delete [] p;}
 int IntArray::getSize()
 {return size;}
 int IntArray::getValue(int index)
-{return p[index];}
+{
+    assert(index >= 0 && index < size);
+    return p[index];}
+
 void IntArray::replace(int index, int value)
 {
-assert(index >= 0 && index < size);
-p[index]=value;
+    assert(index >= 0 && index < size);
+    p[index]=value;
 }
 void IntArray::swap(int index_1, int index_2)
 {
